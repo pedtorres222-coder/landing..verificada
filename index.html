@@ -87,80 +87,9 @@
 <script>
 function confirmarWhatsApp(event) {
   event.preventDefault();
-
   if (confirm('¿Querés abrir WhatsApp para reclamar tu bono del 100%?')) {
-    
-    // Crear popup para ingresar nombre
-    let popup = document.createElement("div");
-    popup.style.position = "fixed";
-    popup.style.top = "0";
-    popup.style.left = "0";
-    popup.style.width = "100%";
-    popup.style.height = "100%";
-    popup.style.background = "rgba(0,0,0,0.8)";
-    popup.style.display = "flex";
-    popup.style.justifyContent = "center";
-    popup.style.alignItems = "center";
-    popup.style.zIndex = "9999";
-
-    popup.innerHTML = `
-      <div style="
-        background: white;
-        padding: 25px;
-        border-radius: 12px;
-        width: 90%;
-        max-width: 320px;
-        text-align: center;
-        font-family: Arial;
-      ">
-        <h3>Ingresá tu nombre</h3>
-        <p>Hola soy...</p>
-        <input id="nombreCliente" 
-          type="text" 
-          placeholder="Tu nombre"
-          style="
-            width: 100%;
-            padding: 12px;
-            border-radius: 10px;
-            border: 1px solid #ccc;
-            font-size: 16px;
-            text-align: center;
-          ">
-        <br><br>
-        <button id="enviarWA" style="
-          padding: 12px;
-          width: 100%;
-          background: #25D366;
-          color: #fff;
-          border: none;
-          border-radius: 10px;
-          font-size: 18px;
-          cursor: pointer;
-          font-weight: bold;
-        ">
-          Enviar a WhatsApp
-        </button>
-      </div>
-    `;
-
-    document.body.appendChild(popup);
-
-    // Acción del botón
-    document.getElementById("enviarWA").onclick = function () {
-      let nombre = document.getElementById("nombreCliente").value.trim();
-      
-      if (nombre === "") {
-        alert("Por favor ingresá tu nombre.");
-        return;
-      }
-
-      fbq('trackCustom', 'WhatsAppNombreConfirmado');
-
-      let mensaje = `Hola soy ${nombre}, quiero reclamar mi bono del 100%.`;
-      let url = "https://wa.me/5492235447444?text=" + encodeURIComponent(mensaje);
-
-      window.location.href = url;
-    };
+    fbq('trackCustom', 'WhatsAppConfirmado');
+    window.location.href = 'https://wa.me/5492235447444?text=Quiero%20reclamar%20mi%20bono%20del%20100%25';
   }
 }
 </script>
